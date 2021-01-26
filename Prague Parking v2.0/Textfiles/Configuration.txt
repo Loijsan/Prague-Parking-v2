@@ -1,0 +1,4 @@
+﻿car:4
+mc:2
+spotvalue:4
+places:100
