@@ -45,7 +45,7 @@ namespace Prague_Parking_v2._0
                 Console.WriteLine("Invalid input, try again");
                 MainMenu();
             }   
-        } // TODO - rensa kommentarer!
+        }
         // This method prints the layout of the parking house and fills the spots with vehicles
         public static void MenuPrinter()
         {
@@ -58,15 +58,6 @@ namespace Prague_Parking_v2._0
             int moveCoursor2 = 0;
             int moveCoursor3 = 0;
             int moveCoursor4 = 0;
-
-            //string parkingString = "";
-            //ParkingSpot currentSpot = ParkingHouse.MainMenuFiller(1); // Byt till rätt 
-            //foreach (Vehicle vehicle in currentSpot.Vehicles)
-            //{
-            //    parkingString += vehicle.type + " " + vehicle.RegNr + " ";
-            //}
-
-            //Console.WriteLine($"first { first } second { second } third { third } fourth { fourth } ");
 
             for (int i = 1; i <= first; i++)
             {
@@ -91,10 +82,6 @@ namespace Prague_Parking_v2._0
                 moveCoursor2++;
                 Console.SetCursorPosition(30, moveCoursor2);
                 Console.Write(j + parkingString + "\n");
-
-                //moveCoursor2++;
-                //Console.SetCursorPosition(30, moveCoursor2);
-                //Console.WriteLine(j + "\n");
             }
             for (int k = second + 1; k <= third; k++)
             {
@@ -107,10 +94,6 @@ namespace Prague_Parking_v2._0
                 moveCoursor3++;
                 Console.SetCursorPosition(60, moveCoursor3);
                 Console.Write(k + parkingString + "\n");
-                
-                //moveCoursor3++;
-                //Console.SetCursorPosition(60, moveCoursor3);
-                //Console.WriteLine(k + "\n");
             }
             for (int l = third + 1; l <= fourth; l++)
             {
@@ -123,10 +106,6 @@ namespace Prague_Parking_v2._0
                 moveCoursor4++;
                 Console.SetCursorPosition(90, moveCoursor4);
                 Console.Write(l + parkingString + "\n");
-
-                //moveCoursor4++;
-                //Console.SetCursorPosition(90, moveCoursor4);
-                //Console.WriteLine(l + "\n");
             }
         }
         // This method makes it possible to close the application with two presses of a button

@@ -9,7 +9,6 @@ namespace Prague_Parking_v2._0
 {
     static class ParkingHouse
     {
-        // This is the Parking House Array where all the parking spaces are, they are occupied by a ParkingSpot object that the vehicles end up in.
         public static ParkingSpot[] ParkingSpots { get; set; } = new ParkingSpot[Initilizing.ParkValue];
         
         // This method finds the first free spot that has the correct free space value for parking a vehicle on it.
@@ -39,6 +38,7 @@ namespace Prague_Parking_v2._0
             }
             return (null, null);
         }
+        // This method checks if the spot the user wants to move a vehicle to has enough space for it 
         public static ParkingSpot FreeSpotFinder(int vehicleValue, int spotSuggest)
         {
             foreach (ParkingSpot spot in ParkingSpots)
@@ -81,7 +81,6 @@ namespace Prague_Parking_v2._0
                 freeSpaces += spot.FreeSpace;
             }
             return freeSpaces;
-
         }
         // This method is used to pick the correct information to the map in the main menu.
         public static ParkingSpot MainMenuFiller(int spotRequest)
@@ -96,67 +95,136 @@ namespace Prague_Parking_v2._0
             }
             return null;
         }
-
-        // This method reads from the parkinglist on startup
+        // This method reads from the parkinglist on startup - I know, this method is huge...
         public static void ReadParkingFile()
         {
             // TODO Fill in the correct pathname when opening this on another computer
             string parkingPath = @"C:\Users\louis\OneDrive\BED\BED år 1\C# del 2\repos\Prague Parking v2\Prague Parking v2.0\Textfiles\Parkinglist.txt";
             List<string> lines = File.ReadAllLines(parkingPath).ToList(); // Thank you Tim Corey!
-
+            string[] places;
             if (lines.Count > 0)
             {
                 foreach (string line in lines)
                 {
-                    string[] places = line.Split("|");
+                    places = line.Split("|");
                     int spotNr = int.Parse(places[1]);
                     int spot = spotNr - 1;
                     ParkingSpots[spot] = new ParkingSpot();
                     ParkingSpots[spot].SpotNumber = spotNr;
                     ParkingSpots[spot].FreeSpace = int.Parse(places[2]);
 
-                    if (places[0] == "#") // This line belongs to a car
+                    if (places[0] == "#") // One vehicle in the spot
                     {
-                        string regNr = places[4];
-                        DateTime parkedTime = DateTime.Parse(places[5]);
-                        Car newCar = new(regNr);
-                        newCar.timeIn = parkedTime;
-                        ParkingSpots[spot].Vehicles.Add(newCar);   
+                        if (places[3] == "Car") { AddFirstCar(places, spot); }
+                        else { AddFirstMC(places, spot); }
                     }
-                    else if (places[0] == "&") // This line contains one mc
+                    else if (places[0] == "§") // Two vehicles in the spot
                     {
-                        string regNr = places[4];
-                        DateTime parkedTime = DateTime.Parse(places[5]);
-                        MC newMc = new(regNr);
-                        newMc.timeIn = parkedTime;
-                        ParkingSpots[spot].Vehicles.Add(newMc);
+                        if (places[3] == "Car") { AddFirstCar(places, spot); }
+                        else { AddFirstMC(places, spot); }
+                        
+                        if (places[6] == "Car") { AddSecondCar(places, spot); }
+                        else { AddSecondMC(places, spot); }
                     }
-                    else if (places[0] == "§") // This line contains two mc's
+                    else if (places[0] == "&") // Three vehicles in the spot
                     {
-                        // Adding the first mc
-                        string regNr1 = places[4];
-                        DateTime parkedTime1 = DateTime.Parse(places[5]);
-                        MC newMc1 = new(regNr1);
-                        newMc1.timeIn = parkedTime1;
-                        ParkingSpots[spot].Vehicles.Add(newMc1);
+                        if (places[3] == "Car") { AddFirstCar(places, spot); }
+                        else { AddFirstMC(places, spot); }
 
-                        // Adding the second mc
-                        string regNr2 = places[7];
-                        DateTime parkedTime2 = DateTime.Parse(places[8]);
-                        MC newMc2 = new(regNr2);
-                        newMc2.timeIn = parkedTime2;
-                        ParkingSpots[spot].Vehicles.Add(newMc2);
+                        if (places[6] == "Car") { AddSecondCar(places, spot); }
+                        else { AddSecondMC(places, spot); }
+
+                        if (places[9] == "Car") { AddThirdCar(places, spot); }
+                        else { AddThirdMC(places, spot); }
+                    }
+                    else if (places[0] == "£") // Four vehicles in the spot
+                    {
+                        if (places[3] == "Car") { AddFirstCar(places, spot); }
+                        else { AddFirstMC(places, spot); }
+
+                        if (places[6] == "Car") { AddSecondCar(places, spot); }
+                        else { AddSecondMC(places, spot); }
+
+                        if (places[9] == "Car") { AddThirdCar(places, spot); }
+                        else { AddThirdMC(places, spot); }
+
+                        if (places[12] == "Car") { AddFourthCar(places, spot); }
+                        else { AddFourthMC(places, spot); }
                     }
                 }
             }
             else
-            { //This loop creates the ParkingSpots in the ParkingHouse if the parkinglist is empty.
+            { //This loop creates the ParkingSpots in the ParkingHouse if the parkinglistfile is empty.
                 for (int i = 0; i < Initilizing.ParkValue; i++)
                 {
                     ParkingSpots[i] = new ParkingSpot();
                     ParkingSpots[i].SpotNumber = i + 1;
                 }
             }
+        } // These methods might not be the most line efficient, but they work!
+        public static void AddFirstCar(string[] places, int spot)
+        {
+            string regNr = places[4];
+            DateTime parkedTime = DateTime.Parse(places[5]);
+            Car newCar = new(regNr);
+            newCar.timeIn = parkedTime;
+            ParkingSpots[spot].Vehicles.Add(newCar);
+        }
+        public static void AddSecondCar(string[] places, int spot)
+        {
+            string regNr = places[7];
+            DateTime parkedTime = DateTime.Parse(places[8]);
+            Car newCar = new(regNr);
+            newCar.timeIn = parkedTime;
+            ParkingSpots[spot].Vehicles.Add(newCar);
+        }
+        public static void AddThirdCar(string[] places, int spot)
+        {
+            string regNr = places[10];
+            DateTime parkedTime = DateTime.Parse(places[11]);
+            Car newCar = new(regNr);
+            newCar.timeIn = parkedTime;
+            ParkingSpots[spot].Vehicles.Add(newCar);
+        }
+        public static void AddFourthCar(string[] places, int spot)
+        {
+            string regNr = places[13];
+            DateTime parkedTime = DateTime.Parse(places[14]);
+            Car newCar = new(regNr);
+            newCar.timeIn = parkedTime;
+            ParkingSpots[spot].Vehicles.Add(newCar);
+        }
+        public static void AddFirstMC(string[] places, int spot)
+        {
+            string regNr = places[4];
+            DateTime parkedTime = DateTime.Parse(places[5]);
+            MC newMc = new(regNr);
+            newMc.timeIn = parkedTime;
+            ParkingSpots[spot].Vehicles.Add(newMc);
+        }
+        public static void AddSecondMC(string[] places, int spot)
+        {
+            string regNr = places[7];
+            DateTime parkedTime = DateTime.Parse(places[8]);
+            MC newMc = new(regNr);
+            newMc.timeIn = parkedTime;
+            ParkingSpots[spot].Vehicles.Add(newMc);
+        }
+        public static void AddThirdMC(string[] places, int spot)
+        {
+            string regNr = places[10];
+            DateTime parkedTime = DateTime.Parse(places[11]);
+            MC newMc = new(regNr);
+            newMc.timeIn = parkedTime;
+            ParkingSpots[spot].Vehicles.Add(newMc);
+        }
+        public static void AddFourthMC(string[] places, int spot)
+        {
+            string regNr = places[13];
+            DateTime parkedTime = DateTime.Parse(places[14]);
+            MC newMc = new(regNr);
+            newMc.timeIn = parkedTime;
+            ParkingSpots[spot].Vehicles.Add(newMc);
         }
         // This method overwrites the parkinglist every time a change has been made
         public static void BackUp()
@@ -170,40 +238,47 @@ namespace Prague_Parking_v2._0
             
             foreach (var spot in ParkingSpots)
             {
-                if (spot.FreeSpace == 0) // if the space is full
+                if (spot.Vehicles.Count == 1)
                 {
-                    if (spot.Vehicles.Count == 1) // ...but there is only one vehicle, in this case a car
-                    {
-                        oneLine = "#";
-                        oneLine = oneLine + separator + spot.SpotNumber + separator + spot.FreeSpace;
-                        foreach (Vehicle vehicle in spot.Vehicles)
-                        {
-                            oneLine += separator + vehicle.type + separator + vehicle.RegNr + separator + vehicle.timeIn; // example: #|1|0|Car|CAR1|2021-01-25 12:14
-                            backUp.Add(oneLine);
-                        }
-                    }
-                    else if (spot.Vehicles.Count == 2) // ..and there are two vehicles, in this case two mc's
-                    {
-                        oneLine = "§";
-                        oneLine = oneLine + separator + spot.SpotNumber + separator + spot.FreeSpace; // Detta är för ParkingSpot
-                        foreach (Vehicle vehicle in spot.Vehicles)
-                        {
-                            oneLine += separator + vehicle.type + separator + vehicle.RegNr + separator + vehicle.timeIn; // example: #|2|0|MC|MC1|2021-01-25 12:14|MC|MC2|2021-01-25
-                        }
-                        backUp.Add(oneLine);
-                    }
-                }
-                else if (spot.Vehicles.Count == 1) // Det finns en motorcykel på platsen - Spot är aldrig null så den går in här oavsett!
-                {
-                    oneLine = "&";
+                    oneLine = "#";
                     oneLine = oneLine + separator + spot.SpotNumber + separator + spot.FreeSpace;
                     foreach (Vehicle vehicle in spot.Vehicles)
                     {
-                        oneLine += separator + vehicle.type + separator + vehicle.RegNr + separator + vehicle.timeIn; // t ex #|3|0|MC|MC3|2021-01-25 12:14
+                        oneLine += separator + vehicle.type + separator + vehicle.RegNr + separator + vehicle.timeIn;
                         backUp.Add(oneLine);
                     }
                 }
-                else // The spot is empty
+                else if (spot.Vehicles.Count == 2)
+                {
+                    oneLine = "§";
+                    oneLine = oneLine + separator + spot.SpotNumber + separator + spot.FreeSpace;
+                    foreach (Vehicle vehicle in spot.Vehicles)
+                    {
+                        oneLine += separator + vehicle.type + separator + vehicle.RegNr + separator + vehicle.timeIn;
+                    }
+                    backUp.Add(oneLine);
+                }
+                else if (spot.Vehicles.Count == 3)
+                {
+                    oneLine = "&";
+                    oneLine = oneLine + separator + spot.SpotNumber + separator + spot.FreeSpace; 
+                    foreach (Vehicle vehicle in spot.Vehicles)
+                    {
+                        oneLine += separator + vehicle.type + separator + vehicle.RegNr + separator + vehicle.timeIn;
+                    }
+                    backUp.Add(oneLine);
+                }
+                else if (spot.Vehicles.Count == 4)
+                {
+                    oneLine = "£";
+                    oneLine = oneLine + separator + spot.SpotNumber + separator + spot.FreeSpace;
+                    foreach (Vehicle vehicle in spot.Vehicles)
+                    {
+                        oneLine += separator + vehicle.type + separator + vehicle.RegNr + separator + vehicle.timeIn;
+                    }
+                    backUp.Add(oneLine);
+                }
+                else
                 {
                     oneLine = "¤";
                     oneLine = oneLine + separator + spot.SpotNumber + separator + spot.FreeSpace;

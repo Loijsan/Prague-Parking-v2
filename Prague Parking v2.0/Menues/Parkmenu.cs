@@ -8,17 +8,15 @@ namespace Prague_Parking_v2._0
 {
     public class Parkmenu
     {
-
+        //This method determines how the menu will look and tosses it to the corresponding method
         public static void ParkMenu()
         {
-            //This method determines how the menu will look and tosses it to the corresponding method
             Console.Clear();
             int freeSpaces = ParkingHouse.FreeSpaces();
 
             if (freeSpaces >= Initilizing.SpotValue)
             {
                 AllChoises();
-
             }
             else if (freeSpaces == Initilizing.McValue)
             {
@@ -28,11 +26,10 @@ namespace Prague_Parking_v2._0
             {
                 NoSpaces();
             }
-            
         }
+        // This menu shows when there is one or more full spot available
         public static void AllChoises()
         {
-            // This menu shows when there is one or more full spot available
             Console.Clear();
             Console.WriteLine("Park Vehicle. Please type the number of your menu choice" +
                "\n \n 1. Park a car" +
@@ -60,9 +57,9 @@ namespace Prague_Parking_v2._0
                 AllChoises();
             }
         }
+        // This menu shows when there is one spot for a mc available
         public static void OneSpace()
         {
-            // This menu shows when there is one spot for a mc available
             Console.Clear();
             Console.WriteLine("Park Vehicle. Please type the number of your menu choice" +
                    "\n \n 1. Park a motorcycle" +
@@ -89,10 +86,9 @@ namespace Prague_Parking_v2._0
                 OneSpace();
             }
         }
-
+        // This menu shows when there are no available spots
         public static void NoSpaces()
         {
-            // This menu shows when there are no available spots
             Console.WriteLine("There are no empty spots left, please wait until a vehicle has been checked out before trying again. " +
                 "\n Press any button to return to the main menu.");
 

@@ -45,7 +45,7 @@ namespace Prague_Parking_v2._0
                 else
                 {
                     string[] parkValues = initial.Split(':');
-                    ParkValue = int.Parse(parkValues[1]); // Den small här sist
+                    ParkValue = int.Parse(parkValues[1]);
                 }
             }
         }

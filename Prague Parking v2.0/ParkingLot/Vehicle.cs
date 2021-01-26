@@ -8,7 +8,7 @@ namespace Prague_Parking_v2._0
 {
     public class Vehicle
     {
-        //public string regNr;
+
         public DateTime timeIn;
         public int value;
         public string type;

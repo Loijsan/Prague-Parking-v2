@@ -10,8 +10,6 @@ namespace Prague_Parking_v2._0
     {
         public static void CheckOut()
         {
-            // Till denna klass skall det ju inte bara checkas ut fordon, den skall också svara hur länge den stod där och vad kostnaden då blev:
-
             Console.Clear();
             Console.Write("Please enter the registration number of the vehicle you would like to check out: ");
             string regNr = Console.ReadLine().ToUpper();
