@@ -8,7 +8,6 @@ namespace Prague_Parking_v2._0
 {
     class Car : Vehicle
     {
-
         public Car(string regNr)
         {
             type = "Car";

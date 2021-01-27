@@ -15,8 +15,11 @@ namespace Prague_Parking_v2._0
         public static int ParkValue { get; set; }
         public static int CarCost { get; set; }
         public static int McCost { get; set; }
+        public static int FreeMinutes { get; set; }
 
-        // The following method reads from the configuration file
+        /// <summary>
+        /// This method reads from the configuration file
+        /// </summary>
         public static void ReadConfigFile()
         {
             // TODO Fill in the correct pathname when opening this on another computer
@@ -49,7 +52,9 @@ namespace Prague_Parking_v2._0
                 }
             }
         }
-        // The following method reads from the price file
+        /// <summary>
+        /// This method reads from the price file.
+        /// </summary>
         public static void ReadPriceFile()
         {
             // TODO Fill in the correct pathname when opening this on another computer
@@ -68,6 +73,11 @@ namespace Prague_Parking_v2._0
                 {
                     string[] mcPrices = price.Split(':');
                     McCost = int.Parse(mcPrices[1]);
+                }
+                else
+                {
+                    string[] freeMinutes = price.Split(':');
+                    FreeMinutes = int.Parse(freeMinutes[1]);
                 }
             }
         }

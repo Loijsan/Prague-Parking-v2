@@ -8,6 +8,9 @@ namespace Prague_Parking_v2._0
 {
     public class Movevehicle
     {
+        /// <summary>
+        /// This metod is for the menu choice "Search for and move vehicle"
+        /// </summary>
         public static void MoveVehicle()
         {
             Console.Clear();
@@ -57,8 +60,6 @@ namespace Prague_Parking_v2._0
                     }
                     else
                     {
-                        Console.WriteLine("Press any key to return to the main menu");
-                        Console.ReadKey();
                         Mainmenu.MainMenu();
                     }
                 }

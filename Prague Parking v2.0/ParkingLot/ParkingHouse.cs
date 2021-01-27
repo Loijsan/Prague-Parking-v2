@@ -10,8 +10,10 @@ namespace Prague_Parking_v2._0
     static class ParkingHouse
     {
         public static ParkingSpot[] ParkingSpots { get; set; } = new ParkingSpot[Initilizing.ParkValue];
-        
-        // This method finds the first free spot that has the correct free space value for parking a vehicle on it.
+
+        /// <summary>
+        /// This method finds the first free spot that has the correct free space value for parking a vehicle on it.
+        /// </summary>
         public static ParkingSpot SpotFinder(int vehicleValue)
         {
             foreach (ParkingSpot spot in ParkingSpots)
@@ -23,7 +25,10 @@ namespace Prague_Parking_v2._0
             }
             return null;
         }
-        // This method searches for the correct spot where the vehicle is parked and returns both the object and the spot.
+        /// <summary>
+        /// This method searches for the correct spot where the vehicle is parked and returns both the object and the spot.
+        /// It is also used to find if a vehicle with that registrationnumber is in the parkingarray.
+        /// </summary>
         public static (Vehicle, ParkingSpot) FindVehicle(string searchReg)
         {
             foreach (ParkingSpot spot in ParkingSpots)
@@ -38,7 +43,9 @@ namespace Prague_Parking_v2._0
             }
             return (null, null);
         }
-        // This method checks if the spot the user wants to move a vehicle to has enough space for it 
+        /// <summary>
+        /// This method checks if the spot the user wants to move a vehicle to has enough space for it.
+        /// </summary>
         public static ParkingSpot FreeSpotFinder(int vehicleValue, int spotSuggest)
         {
             foreach (ParkingSpot spot in ParkingSpots)
@@ -54,7 +61,9 @@ namespace Prague_Parking_v2._0
             }
             return null;
         }
-        // This method return the percentage of the occupied space of the parking house
+        /// <summary>
+        /// This method return the percentage of the occupied space of the parking house.
+        /// </summary>
         public static int FillDegree()
         {
             int occupiedSpaces = 0;
@@ -72,7 +81,9 @@ namespace Prague_Parking_v2._0
             int fillDegree = (int)fillUp;
             return fillDegree;
         }
-        // This method is used to show the correct menu in parking
+        /// <summary>
+        /// This method is used to show the correct menu in parking.
+        /// </summary>
         public static int FreeSpaces()
         {
             int freeSpaces = 0;
@@ -82,7 +93,9 @@ namespace Prague_Parking_v2._0
             }
             return freeSpaces;
         }
-        // This method is used to pick the correct information to the map in the main menu.
+        /// <summary>
+        /// This method is used to pick the correct information to the map in the main menu.
+        /// </summary>
         public static ParkingSpot MainMenuFiller(int spotRequest)
         {
             foreach (ParkingSpot spot in ParkingSpots)
@@ -95,7 +108,9 @@ namespace Prague_Parking_v2._0
             }
             return null;
         }
-        // This method reads from the parkinglist on startup - I know, this method is huge...
+        /// <summary>
+        /// This method reads from the parkinglist on startup - I know, this method is huge...
+        /// </summary>
         public static void ReadParkingFile()
         {
             // TODO Fill in the correct pathname when opening this on another computer
@@ -161,7 +176,8 @@ namespace Prague_Parking_v2._0
                     ParkingSpots[i].SpotNumber = i + 1;
                 }
             }
-        } // These methods might not be the most line efficient, but they work!
+        }
+        /// These methods might not be the most line efficient, but they work! 
         public static void AddFirstCar(string[] places, int spot)
         {
             string regNr = places[4];
@@ -226,12 +242,14 @@ namespace Prague_Parking_v2._0
             newMc.timeIn = parkedTime;
             ParkingSpots[spot].Vehicles.Add(newMc);
         }
-        // This method overwrites the parkinglist every time a change has been made
+        /// <summary>
+        /// This method overwrites the parkinglist every time a change has been made
+        /// </summary>
         public static void BackUp()
         {
             List<string> backUp = new List<string>();
 
-            // TODO Fill in the correct pathname when opening this on another computer
+            //TODO Fill in the correct pathname when opening this on another computer
             string parkingPath = @"C:\Users\louis\OneDrive\BED\BED år 1\C# del 2\repos\Prague Parking v2\Prague Parking v2.0\Textfiles\Parkinglist.txt";
             string oneLine = "";
             string separator = "|";

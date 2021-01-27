@@ -8,7 +8,9 @@ namespace Prague_Parking_v2._0
 {
     public class Mainmenu
     {
-        // This method is for the main menu
+        /// <summary>
+        /// This method is for the main menu.
+        /// </summary>
         public static void MainMenu()
         {
             Console.Clear();
@@ -46,7 +48,9 @@ namespace Prague_Parking_v2._0
                 MainMenu();
             }   
         }
-        // This method prints the layout of the parking house and fills the spots with vehicles
+        /// <summary>
+        /// This method prints the layout of the parking house and fills the spots with vehicles.
+        /// </summary>
         public static void MenuPrinter()
         {
             int spaces = Initilizing.ParkValue;
@@ -108,7 +112,9 @@ namespace Prague_Parking_v2._0
                 Console.Write(l + parkingString + "\n");
             }
         }
-        // This method makes it possible to close the application with two presses of a button
+        /// <summary>
+        /// This method makes it possible to close the application with two presses of a button.
+        /// </summary>
         public static void CloseApplication()
         {
             System.Environment.Exit(0);

@@ -8,7 +8,9 @@ namespace Prague_Parking_v2._0
 {
     public class Parkmenu
     {
-        //This method determines how the menu will look and tosses it to the corresponding method
+        /// <summary>
+        /// This method determines how the menu will look and tosses it to the corresponding method.
+        /// </summary>
         public static void ParkMenu()
         {
             Console.Clear();
@@ -27,7 +29,9 @@ namespace Prague_Parking_v2._0
                 NoSpaces();
             }
         }
-        // This menu shows when there is one or more full spot available
+        /// <summary>
+        /// This menu shows when there is one or more full spot available.
+        /// </summary>
         public static void AllChoises()
         {
             Console.Clear();
@@ -57,7 +61,9 @@ namespace Prague_Parking_v2._0
                 AllChoises();
             }
         }
-        // This menu shows when there is one spot for a mc available
+        /// <summary>
+        /// This menu shows when there is one spot for a mc available.
+        /// </summary>
         public static void OneSpace()
         {
             Console.Clear();
@@ -86,7 +92,9 @@ namespace Prague_Parking_v2._0
                 OneSpace();
             }
         }
-        // This menu shows when there are no available spots
+        /// <summary>
+        /// This menu shows when there are no available spots.
+        /// </summary>
         public static void NoSpaces()
         {
             Console.WriteLine("There are no empty spots left, please wait until a vehicle has been checked out before trying again. " +

@@ -17,52 +17,66 @@ namespace Prague_Parking_v2._0
         public int FreeSpace { get; set; } = Initilizing.SpotValue;
         public int SpotNumber { get; set; }
 
-        // This method is for parking a vehicle
+        /// <summary>
+        /// This method is for parking a vehicle.
+        /// </summary>
         public static void ParkVehicle(string type)
         {
             Console.Clear();
             Console.WriteLine("Please enter the registration number:");
             string regNr = Console.ReadLine().ToUpper();
             int vehicleValue = 0;
-            if (regNr is not "EXIT")
+            if (regNr is not "EXIT" && !regNr.Contains("|") && regNr.Length < 11)
             {
-                if (type == "car")
+                (Vehicle spotsTaken, ParkingSpot occupied) = ParkingHouse.FindVehicle(regNr);
+                if (spotsTaken is null)
                 {
-                    Car newCar = new(regNr);
-                    vehicleValue = newCar.value;
-                    ParkingSpot spot = ParkingHouse.SpotFinder(vehicleValue);
-                    spot.FreeSpace -= vehicleValue;
-                    newCar.timeIn = DateTime.Now;
-                    spot.Vehicles.Add(newCar);
-                    ParkingHouse.BackUp();
-                    int slot = spot.SpotNumber;
-                    Receipt(newCar, "car", slot);
+                    if (type == "car")
+                    {
+                        Car newCar = new(regNr);
+                        vehicleValue = newCar.value;
+                        ParkingSpot spot = ParkingHouse.SpotFinder(vehicleValue);
+                        spot.FreeSpace -= vehicleValue;
+                        newCar.timeIn = DateTime.Now;
+                        spot.Vehicles.Add(newCar);
+                        ParkingHouse.BackUp();
+                        int slot = spot.SpotNumber;
+                        Receipt(newCar, "car", slot);
+                    }
+                    else if (type == "mc")
+                    {
+                        MC newMc = new(regNr);
+                        vehicleValue = newMc.value;
+                        ParkingSpot spot = ParkingHouse.SpotFinder(vehicleValue);
+                        spot.FreeSpace -= vehicleValue;
+                        newMc.timeIn = DateTime.Now;
+                        spot.Vehicles.Add(newMc);
+                        ParkingHouse.BackUp();
+                        int slot = spot.SpotNumber;
+                        Receipt(newMc, "mc", slot);
+                    }
                 }
-                else if (type == "mc")
+                else
                 {
-                    MC newMc = new(regNr);
-                    vehicleValue = newMc.value;
-                    ParkingSpot spot = ParkingHouse.SpotFinder(vehicleValue);
-                    spot.FreeSpace -= vehicleValue;
-                    newMc.timeIn = DateTime.Now;
-                    spot.Vehicles.Add(newMc);
-                    ParkingHouse.BackUp();
-                    int slot = spot.SpotNumber;
-                    Receipt(newMc, "mc", slot);
+                    Console.WriteLine("There is already a vehicle with that registration number parked. Please try again");
+                    Console.ReadKey();
+                    Parkmenu.ParkMenu();
                 }
             }
-            //else if (regNr.Contains("|"))
-            //{
-            //    Console.WriteLine("The registration number contains invalid symbols, please try again");
-            //    Console.ReadKey();
-            //    Mainmenu.MainMenu();
-            //}
-            else
+            else if (regNr is "EXIT")
             {
                 Mainmenu.MainMenu();
             }
+            else
+            {
+                Console.WriteLine("The registration number contains invalid symbols or is to long, please try again");
+                Console.ReadKey();
+                Mainmenu.MainMenu();
+            }
         }
-        // This method writes a receipt to the user
+        /// <summary>
+        /// This method writes a receipt to the user
+        /// </summary>
         public static void Receipt(Vehicle parkedVehicle, string vehicle, int spot)
         {
             Console.WriteLine($"\n\nThe { vehicle } " +
@@ -74,7 +88,9 @@ namespace Prague_Parking_v2._0
             Console.ReadKey();
             Mainmenu.MainMenu();
         }
-        // This method is called to remove a vehicle from a spot and to give back space
+        /// <summary>
+        /// This method is called to remove a vehicle from a spot and to give back the space it previously occupied.
+        /// </summary>
         public void RemoveVehicle(Vehicle remover)
         {
             this.Vehicles.Remove(remover);

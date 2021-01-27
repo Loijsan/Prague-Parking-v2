@@ -10,7 +10,7 @@ namespace Prague_Parking_v2._0
     {
         static void Main()
         {
-            // Please note! When setting this program up on your computer you need to fill in the correct filepaths on four places! 
+            // Please note! When setting this program up on your computer you need to fill in the correct filepaths in four places! 
             // Search for TODO and you will find them.
 
             // Read the config file
