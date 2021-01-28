@@ -14,6 +14,7 @@ namespace Prague_Parking_v2._0
         public static void MoveVehicle()
         {
             Console.Clear();
+            Mainmenu.MenuPrinter();
             Console.Write("Please enter the registration number of the vehicle you would like to search for: ");
             string regNr = Console.ReadLine().ToUpper();
             if (regNr is not "EXIT")
@@ -21,12 +22,12 @@ namespace Prague_Parking_v2._0
                 (Vehicle foundVehicle, ParkingSpot oldSpot) = ParkingHouse.FindVehicle(regNr);
                 if (foundVehicle is not null || oldSpot is not null)
                 {
-                    Console.WriteLine($"This vehicle is parked in spot { oldSpot.SpotNumber }, would you like to move it? ");
+                    Console.Write($"\nThis vehicle is parked in spot { oldSpot.SpotNumber }, would you like to move it?: ");
                     string answer = Console.ReadLine().ToUpper();
 
                     if (answer == "Y" || answer == "YES")
                     {
-                        Console.WriteLine("Ok! Where would you like to park it instead? ");
+                        Console.Write("Ok! Where would you like to park it instead?: ");
                         string spotAnswer = Console.ReadLine();
                         bool correct = int.TryParse(spotAnswer, out int spotSuggest);
 
@@ -43,7 +44,7 @@ namespace Prague_Parking_v2._0
                             }
                             else
                             {
-                                Console.WriteLine("There was not enough free space in this spot to park the vehicle there." +
+                                Console.WriteLine("This spot is not available." +
                                     "\nNo changes have been made, please start over");
                             }
                         }

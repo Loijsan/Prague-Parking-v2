@@ -26,7 +26,7 @@ namespace Prague_Parking_v2._0
             Console.WriteLine("Please enter the registration number:");
             string regNr = Console.ReadLine().ToUpper();
             int vehicleValue = 0;
-            if (regNr is not "EXIT" && !regNr.Contains("|") && regNr.Length < 11)
+            if (regNr is not "EXIT" && !regNr.Contains("|") && regNr.Length < 11 && regNr.Length > 4)
             {
                 (Vehicle spotsTaken, ParkingSpot occupied) = ParkingHouse.FindVehicle(regNr);
                 if (spotsTaken is null)
@@ -69,7 +69,7 @@ namespace Prague_Parking_v2._0
             }
             else
             {
-                Console.WriteLine("The registration number contains invalid symbols or is to long, please try again");
+                Console.WriteLine("The registration number is incorrect, it must be between 5 and 10 characters and can not contain |. Please start over. ");
                 Console.ReadKey();
                 Mainmenu.MainMenu();
             }

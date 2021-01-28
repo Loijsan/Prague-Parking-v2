@@ -14,6 +14,7 @@ namespace Prague_Parking_v2._0
         public static void CheckOut()
         {
             Console.Clear();
+            Mainmenu.MenuPrinter();
             Console.Write("Please enter the registration number of the vehicle you would like to check out: ");
             string regNr = Console.ReadLine().ToUpper();
             (Vehicle foundVehicle, ParkingSpot spot) = ParkingHouse.FindVehicle(regNr);
@@ -78,7 +79,7 @@ namespace Prague_Parking_v2._0
                     else
                     {
                         Console.WriteLine($"\nThe vehicle with the regnr { foundVehicle.RegNr } has been parked for more than a month. " +
-                        $"\nThe cost for this parking is on me :). This vehicle has been checked out. \n\nPress any key to return to the main menu");
+                        $"\nThe cost for this parking is on me :) This vehicle has been checked out. \n\nPress any key to return to the main menu");
                         Console.ReadKey();
                         Mainmenu.MainMenu();
                     }
