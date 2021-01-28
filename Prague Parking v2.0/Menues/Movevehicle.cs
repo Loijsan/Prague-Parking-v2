@@ -39,7 +39,8 @@ namespace Prague_Parking_v2._0
                                 oldSpot.RemoveVehicle(foundVehicle);
                                 newSpot.Vehicles.Add(foundVehicle);
                                 newSpot.FreeSpace -= foundVehicle.value;
-                                Console.WriteLine("The move has been made!");
+                                Console.WriteLine($"\nThe { foundVehicle.type } with the registration number { foundVehicle.RegNr } " +
+                                    $"\nthat was parked in { oldSpot.SpotNumber } has been moved to { newSpot.SpotNumber }.");
                                 ParkingHouse.BackUp();
                             }
                             else
@@ -77,7 +78,7 @@ namespace Prague_Parking_v2._0
                 Console.ReadKey();
                 Mainmenu.MainMenu();
             }
-            Console.WriteLine("Press any key to return to the main menu");
+            Console.WriteLine("\nPress any key to return to the main menu");
             Console.ReadKey();
             Mainmenu.MainMenu();
         }

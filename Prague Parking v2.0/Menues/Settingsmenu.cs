@@ -85,6 +85,15 @@ namespace Prague_Parking_v2._0
                 "\n\nPlease note that the configuration file should only be made changes to when the parkinglist is empty!" +
                 "\nThe different values will produce a system collapse." +
 
+                "\n\nThe pricelist can be changed and re-read while the program is running, it is written in this fomat: " +
+                
+                "\n\ncar:20:per started hour" +
+                "\nmc:10:per started hour" +
+                "\nfree:10:minutes of parking" +
+                
+                "\n\nIf you wish to change these, change nothing but the numbers. After that, just choose menu" +
+                "\nchoise 1 in the \"settings and help menu\" and then confirm the operation with y or yes." + 
+
                 "\n\n\nPress any key to return to the main menu");
 
             Console.ReadKey();

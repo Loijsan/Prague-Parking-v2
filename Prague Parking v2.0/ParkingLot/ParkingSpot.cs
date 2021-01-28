@@ -79,8 +79,8 @@ namespace Prague_Parking_v2._0
         /// </summary>
         public static void Receipt(Vehicle parkedVehicle, string vehicle, int spot)
         {
-            Console.WriteLine($"\n\nThe { vehicle } " +
-                $"\nwith the registration number { parkedVehicle.RegNr }" +
+            Console.WriteLine($"\n\nThe { vehicle } with the " +
+                $"\nregistration number { parkedVehicle.RegNr }" +
                 $"\nhas been parked in spot { spot }" +
                 $"\nat { parkedVehicle.timeIn }");
 

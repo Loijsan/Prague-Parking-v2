@@ -1,4 +1,4 @@
-﻿car:4
-mc:2
-spotvalue:4
+﻿car:4:spaces
+mc:2:spaces
+spotvalue:4: total number of spaces for one parkingspace
 places:100

@@ -84,7 +84,7 @@ namespace Prague_Parking_v2._0
                     parkingString += " " + vehicle.type + "-" + vehicle.RegNr;
                 }
                 moveCoursor2++;
-                Console.SetCursorPosition(30, moveCoursor2);
+                Console.SetCursorPosition(35, moveCoursor2);
                 Console.Write(j + parkingString + "\n");
             }
             for (int k = second + 1; k <= third; k++)
@@ -96,7 +96,7 @@ namespace Prague_Parking_v2._0
                     parkingString += " " + vehicle.type + "-" + vehicle.RegNr;
                 }
                 moveCoursor3++;
-                Console.SetCursorPosition(60, moveCoursor3);
+                Console.SetCursorPosition(70, moveCoursor3);
                 Console.Write(k + parkingString + "\n");
             }
             for (int l = third + 1; l <= fourth; l++)
@@ -108,7 +108,7 @@ namespace Prague_Parking_v2._0
                     parkingString += " " + vehicle.type + "-" + vehicle.RegNr;
                 }
                 moveCoursor4++;
-                Console.SetCursorPosition(90, moveCoursor4);
+                Console.SetCursorPosition(105, moveCoursor4);
                 Console.Write(l + parkingString + "\n");
             }
         }
