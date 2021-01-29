@@ -22,7 +22,6 @@ namespace Prague_Parking_v2._0
         /// </summary>
         public static void ReadConfigFile()
         {
-        // TODO Fill in the correct pathname when opening this on another computer
         string configPath = @"../../../Textfiles/Configuration.txt";
 
             List<string> initialize = File.ReadAllLines(configPath).ToList();
@@ -57,7 +56,6 @@ namespace Prague_Parking_v2._0
         /// </summary>
         public static void ReadPriceFile()
         {
-            // TODO Fill in the correct pathname when opening this on another computer
             string pricePath = @"../../../Textfiles/Pricelist.txt";
 
             List<string> prices = File.ReadAllLines(pricePath).ToList();

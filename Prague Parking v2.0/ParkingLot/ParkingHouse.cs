@@ -113,7 +113,6 @@ namespace Prague_Parking_v2._0
         /// </summary>
         public static void ReadParkingFile()
         {
-            // TODO Fill in the correct pathname when opening this on another computer
             string parkingPath = @"../../../Textfiles/Parkinglist.txt";
             List<string> lines = File.ReadAllLines(parkingPath).ToList(); // Thank you Tim Corey!
             string[] places;
@@ -249,7 +248,6 @@ namespace Prague_Parking_v2._0
         {
             List<string> backUp = new List<string>();
 
-            //TODO Fill in the correct pathname when opening this on another computer
             string parkingPath = @"../../../Textfiles/Parkinglist.txt";
             string oneLine = "";
             string separator = "|";
