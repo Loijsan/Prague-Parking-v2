@@ -114,7 +114,7 @@ namespace Prague_Parking_v2._0
         public static void ReadParkingFile()
         {
             // TODO Fill in the correct pathname when opening this on another computer
-            string parkingPath = @"C:\Users\louis\OneDrive\BED\BED år 1\C# del 2\repos\Prague Parking v2\Prague Parking v2.0\Textfiles\Parkinglist.txt";
+            string parkingPath = @"../../../Textfiles/Parkinglist.txt";
             List<string> lines = File.ReadAllLines(parkingPath).ToList(); // Thank you Tim Corey!
             string[] places;
             if (lines.Count > 0)
@@ -250,7 +250,7 @@ namespace Prague_Parking_v2._0
             List<string> backUp = new List<string>();
 
             //TODO Fill in the correct pathname when opening this on another computer
-            string parkingPath = @"C:\Users\louis\OneDrive\BED\BED år 1\C# del 2\repos\Prague Parking v2\Prague Parking v2.0\Textfiles\Parkinglist.txt";
+            string parkingPath = @"../../../Textfiles/Parkinglist.txt";
             string oneLine = "";
             string separator = "|";
             
