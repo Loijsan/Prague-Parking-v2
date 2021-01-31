@@ -1,0 +1,6 @@
+﻿bike:1:space
+mc:2:spaces
+car:4:spaces
+bus:16:spaces
+spotvalue:4: total number of spaces for one parkingspace
+places:100

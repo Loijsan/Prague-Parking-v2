@@ -127,12 +127,12 @@ namespace Prague_Parking_v2._0
                     ParkingSpots[spot].SpotNumber = spotNr;
                     ParkingSpots[spot].FreeSpace = int.Parse(places[2]);
 
-                    if (places[0] == "#") // One vehicle in the spot
+                    if (places[0] == "1") // One vehicle in the spot
                     {
                         if (places[3] == "Car") { AddFirstCar(places, spot); }
                         else { AddFirstMC(places, spot); }
                     }
-                    else if (places[0] == "§") // Two vehicles in the spot
+                    else if (places[0] == "2") // Two vehicles in the spot
                     {
                         if (places[3] == "Car") { AddFirstCar(places, spot); }
                         else { AddFirstMC(places, spot); }
@@ -140,7 +140,7 @@ namespace Prague_Parking_v2._0
                         if (places[6] == "Car") { AddSecondCar(places, spot); }
                         else { AddSecondMC(places, spot); }
                     }
-                    else if (places[0] == "&") // Three vehicles in the spot
+                    else if (places[0] == "3") // Three vehicles in the spot
                     {
                         if (places[3] == "Car") { AddFirstCar(places, spot); }
                         else { AddFirstMC(places, spot); }
@@ -151,7 +151,7 @@ namespace Prague_Parking_v2._0
                         if (places[9] == "Car") { AddThirdCar(places, spot); }
                         else { AddThirdMC(places, spot); }
                     }
-                    else if (places[0] == "£") // Four vehicles in the spot
+                    else if (places[0] == "4") // Four vehicles in the spot
                     {
                         if (places[3] == "Car") { AddFirstCar(places, spot); }
                         else { AddFirstMC(places, spot); }
@@ -256,7 +256,7 @@ namespace Prague_Parking_v2._0
             {
                 if (spot.Vehicles.Count == 1)
                 {
-                    oneLine = "#";
+                    oneLine = "1";
                     oneLine = oneLine + separator + spot.SpotNumber + separator + spot.FreeSpace;
                     foreach (Vehicle vehicle in spot.Vehicles)
                     {
@@ -266,7 +266,7 @@ namespace Prague_Parking_v2._0
                 }
                 else if (spot.Vehicles.Count == 2)
                 {
-                    oneLine = "§";
+                    oneLine = "2";
                     oneLine = oneLine + separator + spot.SpotNumber + separator + spot.FreeSpace;
                     foreach (Vehicle vehicle in spot.Vehicles)
                     {
@@ -276,7 +276,7 @@ namespace Prague_Parking_v2._0
                 }
                 else if (spot.Vehicles.Count == 3)
                 {
-                    oneLine = "&";
+                    oneLine = "3";
                     oneLine = oneLine + separator + spot.SpotNumber + separator + spot.FreeSpace; 
                     foreach (Vehicle vehicle in spot.Vehicles)
                     {
@@ -286,7 +286,7 @@ namespace Prague_Parking_v2._0
                 }
                 else if (spot.Vehicles.Count == 4)
                 {
-                    oneLine = "£";
+                    oneLine = "4";
                     oneLine = oneLine + separator + spot.SpotNumber + separator + spot.FreeSpace;
                     foreach (Vehicle vehicle in spot.Vehicles)
                     {

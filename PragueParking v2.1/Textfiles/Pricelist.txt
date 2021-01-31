@@ -1,0 +1,5 @@
+﻿bike:5:per started hour
+mc:10:per started hour
+car:20:per started hour
+bus:80:per started hour
+free:10:minutes of parking
